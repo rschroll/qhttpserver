@@ -97,6 +97,11 @@ void QHttpConnection::flush()
     m_socket->flush();
 }
 
+void QHttpConnection::disconnectFromHost()
+{
+    m_socket->disconnectFromHost();
+}
+
 /********************
  * Static Callbacks *
  *******************/
@@ -132,6 +137,7 @@ int QHttpConnection::HeadersComplete(http_parser *parser)
         response->m_keepAlive = false;
 
     connect(theConnection, SIGNAL(destroyed()), response, SLOT(connectionClosed()));
+    connect(response, SIGNAL(done()), theConnection, SLOT(disconnectFromHost()));
 
     // we are good to go!
     emit theConnection->newRequest(theConnection->m_request, response);
