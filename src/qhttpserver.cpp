@@ -114,6 +114,11 @@ bool QHttpServer::listen(const QHostAddress &address, quint16 port)
     return m_tcpServer->listen(address, port);
 }
 
+bool QHttpServer::listen(const QString &address, quint16 port)
+{
+    return listen(QHostAddress(address), port);
+}
+
 bool QHttpServer::listen(quint16 port)
 {
     return listen(QHostAddress::Any, port);

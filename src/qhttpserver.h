@@ -124,18 +124,29 @@ public:
      * all interfaces which means the server can be accessed from anywhere.
      * \param port Port number on which the server should run.
      * \return true if the server was started successfully, false otherwise.
-     * \sa listen(quint16)
+     * \sa listen(quint16), listen(const QString&, quint16)
      */
     bool listen(const QHostAddress &address = QHostAddress::Any, quint16 port=0);
+
+    /*!
+     * Start the server bound to the @c address and @c port.
+     * This function returns immediately!
+     *
+     * \param address Address on which to listen to.
+     * \param port Port number on which the server should run.
+     * \return true if the server was started successfully, false otherwise.
+     * \sa listen(quint16), listen(const QHostAddress&, quint16)
+     */
+    Q_INVOKABLE bool listen(const QString &address, quint16 port=0);
 
     /*!
      * Starts the server on @c port listening on all interfaces.
      *
      * \param port Port number on which the server should run.
      * \return true if the server was started successfully, false otherwise.
-     * \sa listen(const QHostAddress&, quint16)
+     * \sa listen(const QHostAddress&, quint16), listen(const QString&, quint16)
      */
-    bool listen(quint16 port);
+    Q_INVOKABLE bool listen(quint16 port);
 
     /*!
      * Stop listening for connections

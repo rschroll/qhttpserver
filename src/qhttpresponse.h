@@ -103,7 +103,7 @@ public slots:
      * code. Any headers should be set before this
      * is called.
      */
-    void writeHead(int status);
+    Q_INVOKABLE void writeHead(int status);
 
     /*!
      * Write the block of data to the client.
@@ -112,13 +112,13 @@ public slots:
      * writeHead() has to be called before write(), otherwise the call will
      * fail.
      */
-    void write(const QByteArray &data);
+    Q_INVOKABLE void write(const QByteArray &data);
 
     /*!
      * Write a QString instead of a QByteArray.
      * \see write(const QByteArray &);
      */
-    void write(const QString &data);
+    Q_INVOKABLE void write(const QString &data);
 
     /*!
      * End the response. Data will be flushed
@@ -129,12 +129,12 @@ public slots:
      * This will emit done() and queue this object
      * for deletion. For details see \ref memorymanagement
      */
-    void end(const QString &data=QString());
+    Q_INVOKABLE void end(const QString &data=QString());
 
     /*!
      * Set a response header @c field to @c value
      */
-    void setHeader(const QString &field, const QString &value);
+    Q_INVOKABLE void setHeader(const QString &field, const QString &value);
 
 signals:
     /*!
